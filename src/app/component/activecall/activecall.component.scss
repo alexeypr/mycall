@@ -1,0 +1,15 @@
+.margin-left {
+    margin-left: 5px;
+}
+fieldset {
+    border: 1px solid #000000;
+    padding: 10px;
+}
+fieldset > legend {
+    width: auto;
+}
+fieldset > legend > span {
+    font-size: 14px;
+    font-weight: normal;
+    padding: 0 5px;
+}

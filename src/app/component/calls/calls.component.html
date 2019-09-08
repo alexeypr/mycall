@@ -1,0 +1,53 @@
+<h2>Call List</h2>
+  
+<form class="form-inline" #sForm = "ngForm" (ngSubmit) = "onFormSubmit()">
+  <div class="form-group search-form">
+    <label for="callType">Call Type</label>
+    <select id="callType" name="callType" class="form-control" [(ngModel)]="searchForm.callType">
+        <option value="SALES">SALES</option>
+        <option value="SERVICES">SERVICES</option>
+    </select>
+    <label for="dateSoldFrom">From</label>
+    <input class="form-control" placeholder="dd-mm-yyyy"
+             name="dateSoldFrom" [(ngModel)]="searchForm.dateSoldFrom" ngbDatepicker #d1="ngbDatepicker" readonly>
+    <div class="input-group-append">
+        <button class="btn btn-secondary" (click)="d1.toggle()" type="button"><fa-icon [icon]="faCalendar"></fa-icon></button>
+    </div>
+    <label for="dateSoldTo">To</label>
+    <input class="form-control" placeholder="dd-mm-yyyy"
+             name="dateSoldTo" [(ngModel)]="searchForm.dateSoldTo" ngbDatepicker #d2="ngbDatepicker" readonly>
+    <div class="input-group-append">
+        <button class="btn btn-secondary" (click)="d2.toggle()" type="button"><fa-icon [icon]="faCalendar"></fa-icon></button>
+    </div>
+    <label for="status">Status</label>
+    <select id="status" name="status" class="form-control" [(ngModel)]="searchForm.status">
+        <option value="NEW">NEW</option>
+        <option value="IN USE">IN USE</option>
+        <option value="COMPLETED">COMPLETED</option>
+    </select>
+    <button type="submit" class="btn btn-info">Search</button>
+  </div>
+</form>
+
+<div class="row">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date Sold</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let call of callList" (click)="selectRecord(call)" [class.highlighted]="selectedRecord == call.id">
+        <td>{{call.contact | fullname}}</td>
+        <td>{{call.dateSold}}</td>
+        <td>{{call.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row">
+    <button type="button" class="btn btn-info float-right" (click)="makeCall()" [disabled]="selectedRecord==0">Make Call</button>
+</div>
