@@ -35,7 +35,7 @@ export class CallsComponent implements OnInit {
   onFormSubmit() {
     console.log(this.searchForm);
     let filteredList = this.callService.getCalls();
-    if (this.searchForm.status!==undefined)
+    if (this.searchForm.status!==undefined && this.searchForm.status!='')
       filteredList = filteredList.filter(c => c.status == this.searchForm.status);
     console.log(this.searchForm.dateSoldFrom);
     if (this.searchForm.dateSoldFrom!==undefined) {
